@@ -66,9 +66,12 @@ end
     whether the paddle should go down, stay, or go up.
 ]]
 function Paddle:moveAi(ball)
-    if self.y + self.height < ball.y then
+    local mid = self.y + self.height / 2
+    local tolerateRange = 5
+
+    if mid + tolerateRange < ball.y then
         return 1
-    elseif self.y > ball.y then
+    elseif mid - tolerateRange > ball.y then
         return -1
     else
         return 0 

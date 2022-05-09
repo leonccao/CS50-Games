@@ -104,6 +104,10 @@ function love.load()
     -- following turn
     servingPlayer = 1
 
+    -- Value includes 0, 1, 2; whoever just deflected the ball.
+    -- 0 if no one deflected the ball yet.
+    deflectedPlayer = 0
+
     -- player who won the game; not set to a proper value until we reach
     -- that state in the game
     winningPlayer = 0
@@ -163,6 +167,8 @@ function love.update(dt)
                 ball.dy = math.random(10, 150)
             end
 
+            deflectedPlayer = 1
+
             sounds['paddle_hit']:play()
         end
         if ball:collides(player2) then
@@ -175,6 +181,8 @@ function love.update(dt)
             else
                 ball.dy = math.random(10, 150)
             end
+
+            deflectedPlayer = 2
 
             sounds['paddle_hit']:play()
         end
@@ -199,6 +207,7 @@ function love.update(dt)
         if ball.x < 0 then
             servingPlayer = 1
             player2Score = player2Score + 1
+            deflectedPlayer = 0
             sounds['score']:play()
 
             -- if we've reached a score of 10, the game is over; set the
@@ -218,6 +227,7 @@ function love.update(dt)
         if ball.x > VIRTUAL_WIDTH then
             servingPlayer = 2
             player1Score = player1Score + 1
+            deflectedPlayer = 0
             sounds['score']:play()
 
             -- if we've reached a score of 10, the game is over; set the
@@ -240,8 +250,13 @@ function love.update(dt)
     -- player 1
     if player1Ai then
         if gameState == 'play' then
-            local direction = player1:moveAi(ball)
-            player1.dy = direction * PADDLE_SPEED
+            if deflectedPlayer == 2 or
+                (deflectedPlayer == 0 and servingPlayer == 2) then
+                local direction = player1:moveAi(ball)
+                player1.dy = direction * PADDLE_SPEED
+            else
+                player1.dy = 0
+            end
         end
     else
         if love.keyboard.isDown('w') then
@@ -256,8 +271,13 @@ function love.update(dt)
     -- player 2
     if player2Ai then
         if gameState == 'play' then
-            local direction = player2:moveAi(ball)
-            player2.dy = direction * PADDLE_SPEED
+            if deflectedPlayer == 1 or
+                (deflectedPlayer == 0 and servingPlayer == 1) then
+                local direction = player2:moveAi(ball)
+                player2.dy = direction * PADDLE_SPEED
+            else
+                player2.dy = 0
+            end
         end
     else
         if love.keyboard.isDown('up') then
@@ -314,6 +334,8 @@ function love.keypressed(key)
             else
                 servingPlayer = 1
             end
+
+            deflectedPlayer = 0
         end
     elseif key == 'f1' then
         if gameState == 'start' then
