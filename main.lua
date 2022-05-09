@@ -108,6 +108,10 @@ function love.load()
     -- that state in the game
     winningPlayer = 0
 
+    -- wether player is hooked up with AI
+    player1Ai = false
+    player2Ai = false
+
     -- the state of our game; can be any of the following:
     -- 1. 'start' (the beginning of the game, before first serve)
     -- 2. 'serve' (waiting on a key press to serve the ball)
@@ -230,24 +234,37 @@ function love.update(dt)
     end
 
     --
-    -- paddles can move no matter what state we're in
+    -- Human player: paddles can move no matter what state we're in.
+    -- AI player: move only in play state.
     --
     -- player 1
-    if love.keyboard.isDown('w') then
-        player1.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('s') then
-        player1.dy = PADDLE_SPEED
+    if player1Ai then
+        if gameState == 'play' then
+
+        end
     else
-        player1.dy = 0
+        if love.keyboard.isDown('w') then
+            player1.dy = -PADDLE_SPEED
+        elseif love.keyboard.isDown('s') then
+            player1.dy = PADDLE_SPEED
+        else
+            player1.dy = 0
+        end
     end
 
     -- player 2
-    if love.keyboard.isDown('up') then
-        player2.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('down') then
-        player2.dy = PADDLE_SPEED
+    if player2Ai then
+        if gameState == 'play' then
+
+        end
     else
-        player2.dy = 0
+        if love.keyboard.isDown('up') then
+            player2.dy = -PADDLE_SPEED
+        elseif love.keyboard.isDown('down') then
+            player2.dy = PADDLE_SPEED
+        else
+            player2.dy = 0
+        end
     end
 
     -- update our ball based on its DX and DY only if we're in play state;
@@ -296,6 +313,14 @@ function love.keypressed(key)
                 servingPlayer = 1
             end
         end
+    elseif key == 'f1' then
+        if gameState == 'start' then
+            player1Ai = not (player1Ai)
+        end
+    elseif key == 'f2' then
+        if gameState == 'start' then
+            player2Ai = not (player2Ai)
+        end
     end
 end
 
@@ -315,6 +340,15 @@ function love.draw()
         love.graphics.setFont(smallFont)
         love.graphics.printf('Welcome to Pong!', 0, 10, VIRTUAL_WIDTH, 'center')
         love.graphics.printf('Press Enter to begin!', 0, 20, VIRTUAL_WIDTH, 'center')
+
+        player1ConfigText = player1Ai and
+            'Player1 is AI. Press F1 to set Player1 as Human!'
+            or 'Player1 is Human. Press F1 to set Player1 as AI!'
+        player2ConfigText = player2Ai and
+            'Player2 is AI. Press F2 to set Player2 as Human!'
+            or 'Player2 is Human. Press F2 to set Player2 as AI!'
+        love.graphics.printf(player1ConfigText, 0, 30, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf(player2ConfigText, 0, 40, VIRTUAL_WIDTH, 'center')
     elseif gameState == 'serve' then
         -- UI messages
         love.graphics.setFont(smallFont)

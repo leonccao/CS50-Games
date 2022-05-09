@@ -1,1 +1,1 @@
-# CS50-Games
+# Project 0 - Pong
