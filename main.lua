@@ -240,7 +240,8 @@ function love.update(dt)
     -- player 1
     if player1Ai then
         if gameState == 'play' then
-
+            local direction = player1:moveAi(ball)
+            player1.dy = direction * PADDLE_SPEED
         end
     else
         if love.keyboard.isDown('w') then
@@ -255,7 +256,8 @@ function love.update(dt)
     -- player 2
     if player2Ai then
         if gameState == 'play' then
-
+            local direction = player2:moveAi(ball)
+            player2.dy = direction * PADDLE_SPEED
         end
     else
         if love.keyboard.isDown('up') then

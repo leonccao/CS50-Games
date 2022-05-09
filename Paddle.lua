@@ -60,3 +60,17 @@ end
 function Paddle:render()
     love.graphics.rectangle('fill', self.x, self.y, self.width, self.height)
 end
+
+--[[
+    Expects a ball as an argument and returns -1, 0, or 1, intends 
+    whether the paddle should go down, stay, or go up.
+]]
+function Paddle:moveAi(ball)
+    if self.y + self.height < ball.y then
+        return 1
+    elseif self.y > ball.y then
+        return -1
+    else
+        return 0 
+    end
+end
