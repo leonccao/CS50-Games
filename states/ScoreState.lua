@@ -38,6 +38,13 @@ function ScoreState:update(dt)
 end
 
 function ScoreState:render()
+    love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
+
+    love.graphics.setColor(0.7, 0.7, 0.7, 0.25)
+    love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+
+    love.graphics.setColor(1, 1, 1, 1)
+
     -- simply render the score to the middle of the screen
     local resultText = 'Oof! You Lost!'
     local medalImage = nil

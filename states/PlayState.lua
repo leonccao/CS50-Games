@@ -118,6 +118,8 @@ function PlayState:render()
     love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
 
     self.bird:render()
+    
+    love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
 end
 
 --[[

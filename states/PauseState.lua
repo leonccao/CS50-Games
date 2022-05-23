@@ -43,12 +43,16 @@ function PauseState:render()
         pair:render()
     end
 
-    love.graphics.setFont(flappyFont)
-    love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
-
     self.bird:render()
 
+    love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
+
+    love.graphics.setColor(0.7, 0.7, 0.7, 0.25)
+    love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    love.graphics.setColor(1, 1, 1, 1)
+
     love.graphics.setFont(flappyFont)
+    love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
     love.graphics.printf('Game Paused', 0, 64, VIRTUAL_WIDTH, 'center')
 
     love.graphics.setFont(hugeFont)

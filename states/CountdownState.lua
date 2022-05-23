@@ -49,4 +49,6 @@ function CountdownState:render()
     -- render count big in the middle of the screen
     love.graphics.setFont(hugeFont)
     love.graphics.printf(tostring(self.count), 0, 120, VIRTUAL_WIDTH, 'center')
+    
+    love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
 end

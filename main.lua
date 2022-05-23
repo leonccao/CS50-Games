@@ -55,8 +55,8 @@ VIRTUAL_HEIGHT = 288
 local background = love.graphics.newImage('resources/images/background.png')
 local backgroundScroll = 0
 
-local ground = love.graphics.newImage('resources/images/ground.png')
-local groundScroll = 0
+ground = love.graphics.newImage('resources/images/ground.png')
+groundScroll = 0
 
 local BACKGROUND_SCROLL_SPEED = 30
 local GROUND_SCROLL_SPEED = 60
@@ -175,7 +175,6 @@ function love.draw()
 
     love.graphics.draw(background, -backgroundScroll, 0)
     gStateMachine:render()
-    love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
 
     push:finish()
 end
