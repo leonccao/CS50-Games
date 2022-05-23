@@ -20,18 +20,20 @@ BIRD_HEIGHT = 24
 PIPE_HEIGHT_RANGE = 50
 
 function PlayState:init()
-    self.bird = Bird()
-    self.pipePairs = {}
-    self.timer = 0
-    self.score = 0
-
-    -- initialize our last recorded Y value for a gap placement to base other gaps off of
-    self.lastY = -PIPE_HEIGHT + math.random(80) + 20
-
     self.widthBetweenPipes = self.randomHorizontalGap(self)
 end
 
 function PlayState:update(dt)
+    if love.keyboard.wasPressed('p') then
+        gStateMachine:change('pause', {
+            bird = self.bird,
+            pipePairs = self.pipePairs,
+            timer = self.timer,
+            score = self.score,
+            lastY = self.lastY
+        })
+    end
+
     -- update timer for pipe spawning
     self.timer = self.timer + dt
 
@@ -121,9 +123,15 @@ end
 --[[
     Called when this state is transitioned to from another state.
 ]]
-function PlayState:enter()
+function PlayState:enter(params)
     -- if we're coming from death, restart scrolling
     scrolling = true
+
+    self.bird = params.bird
+    self.pipePairs = params.pipePairs
+    self.timer = params.timer
+    self.score = params.score
+    self.lastY = params.lastY
 end
 
 --[[
@@ -138,7 +146,8 @@ end
     Re-random the horizontal gaps between pipes.
 ]]
 function PlayState:randomHorizontalGap()
-    local temp = math.min(self.score / 8, 5) + 1
+    local score = self.score ~= nil and self.score or 0
+    local temp = math.min(score / 8, 5) + 1
     local gap = 1.8 + 1 / temp + 2 * math.random()
     return gap
 end

@@ -34,7 +34,13 @@ function CountdownState:update(dt)
 
         -- when 0 is reached, we should enter the PlayState
         if self.count == 0 then
-            gStateMachine:change('play')
+            gStateMachine:change('play', {
+                bird = Bird(),
+                pipePairs = {},
+                timer = 0,
+                score = 0,
+                lastY = -PIPE_HEIGHT + math.random(80) + 20
+            })
         end
     end
 end
