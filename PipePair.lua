@@ -23,10 +23,12 @@ function PipePair:init(y)
     -- y value is for the topmost pipe; gap is a vertical shift of the second lower pipe
     self.y = y
 
+    local gapHeight = self.randomHeightGap(self)
+
     -- instantiate two pipes that belong to this pair
     self.pipes = {
         ['upper'] = Pipe('top', self.y),
-        ['lower'] = Pipe('bottom', self.y + PIPE_HEIGHT + GAP_HEIGHT)
+        ['lower'] = Pipe('bottom', self.y + PIPE_HEIGHT + gapHeight)
     }
 
     -- whether this pipe pair is ready to be removed from the scene
@@ -49,4 +51,11 @@ function PipePair:render()
     for l, pipe in pairs(self.pipes) do
         pipe:render()
     end
+end
+
+function PipePair:randomHeightGap()
+    local score = self.score ~= nil and self.score or 0
+    local temp = math.min(score / 3, 5) + 1
+    local gap = 70 + 30 / temp + 20 * math.random()
+    return gap
 end
