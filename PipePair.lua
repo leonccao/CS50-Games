@@ -56,6 +56,6 @@ end
 function PipePair:randomHeightGap()
     local score = self.score ~= nil and self.score or 0
     local temp = math.min(score / 3, 5) + 1
-    local gap = 70 + 30 / temp + 20 * math.random()
+    local gap = 45 + 40 / temp + 20 * math.random()
     return gap
 end
