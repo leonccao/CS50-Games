@@ -9,6 +9,7 @@
 PauseState = Class { __includes = BaseState }
 
 function PauseState:enter(params)
+    scrolling = false
     sounds['music']:pause()
 
     self.bird = params.bird
@@ -19,6 +20,7 @@ function PauseState:enter(params)
 end
 
 function PauseState:exit(params)
+    scrolling = true
     sounds['music']:play()
 end
 

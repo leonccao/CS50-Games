@@ -91,6 +91,8 @@ function love.load()
         ['music'] = love.audio.newSource('resources/sounds/marios_way.mp3', 'static')
     }
 
+    scrolling = true
+
     -- kick off music
     sounds['music']:setLooping(true)
     sounds['music']:play()

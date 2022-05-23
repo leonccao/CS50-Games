@@ -19,7 +19,15 @@ local bronzeMedalImage = love.graphics.newImage('resources/images/bronze_medal.p
     from the play state so we know what to render to the State.
 ]]
 function ScoreState:enter(params)
+    scrolling = false
+    sounds['music']:pause()
+    
     self.score = params.score
+end
+
+function ScoreState:exit()
+    scrolling = true
+    sounds['music']:play()
 end
 
 function ScoreState:update(dt)
