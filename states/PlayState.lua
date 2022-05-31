@@ -25,6 +25,7 @@ end
 
 function PlayState:update(dt)
     if love.keyboard.wasPressed('p') then
+        sounds['pause']:play()
         gStateMachine:change('pause', {
             bird = self.bird,
             pipePairs = self.pipePairs,
