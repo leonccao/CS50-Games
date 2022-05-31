@@ -1,13 +1,11 @@
-# Project 1 - Flappy
-
-(Place holders only)
+# Project 1 - Flappy Bird
 
 ## Video demo
 
-[![Project 0 - Pong](./screenshots/project0-pong.jpg)](https://youtu.be/Gw4YxQObCEo)
+[![Project 1 - Flappy Bird](./resources/screenshots/project1_flappy_bird.png)](https://youtu.be/_uaxQl_7rqU)
 
 ## Content
 
-- [v1.2] Paddle AI behaves more like human, will only start to move when it's turn to catch the ball.
-- [v1.1] Paddle AI catches the ball with its main body of the paddle.  
-- [v1.0] Basic AI to support one player game or two AIs game.
+- 0:00:09 Pausing the game
+- 0:00:20 Clear difference in horizontal and vertical gaps between pipes
+- 0:00:48 Medals for different results
