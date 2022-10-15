@@ -2,7 +2,7 @@
 
 ## Video demo
 
-[![Project 0 - Pong](./screenshots/project0-pong.jpg)](https://youtu.be/Gw4YxQObCEo)
+[![Project 0 - Pong](./resources/screenshots/project0-pong.jpg)](https://youtu.be/Gw4YxQObCEo)
 
 ## Content
 

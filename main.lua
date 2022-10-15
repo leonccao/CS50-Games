@@ -22,22 +22,22 @@
 -- a more retro aesthetic
 --
 -- https://github.com/Ulydev/push
-push = require 'push'
+push = require 'lib/push'
 
 -- the "Class" library we're using will allow us to represent anything in
 -- our game as code, rather than keeping track of many disparate variables and
 -- methods
 --
 -- https://github.com/vrld/hump/blob/master/class.lua
-Class = require 'class'
+Class = require 'lib/class'
 
 -- our Paddle class, which stores position and dimensions for each Paddle
 -- and the logic for rendering them
-require 'Paddle'
+require 'src/Paddle'
 
 -- our Ball class, which isn't much different than a Paddle structure-wise
 -- but which will mechanically function very differently
-require 'Ball'
+require 'src/Ball'
 
 -- size of our actual window
 WINDOW_WIDTH = 1280
@@ -67,17 +67,17 @@ function love.load()
     math.randomseed(os.time())
 
     -- initialize our nice-looking retro text fonts
-    smallFont = love.graphics.newFont('font.ttf', 8)
-    largeFont = love.graphics.newFont('font.ttf', 16)
-    scoreFont = love.graphics.newFont('font.ttf', 32)
+    smallFont = love.graphics.newFont('resources/fonts/font.ttf', 8)
+    largeFont = love.graphics.newFont('resources/fonts/font.ttf', 16)
+    scoreFont = love.graphics.newFont('resources/fonts/font.ttf', 32)
     love.graphics.setFont(smallFont)
 
     -- set up our sound effects; later, we can just index this table and
     -- call each entry's `play` method
     sounds = {
-        ['paddle_hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
-        ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
-        ['wall_hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static')
+        ['paddle_hit'] = love.audio.newSource('resources/sounds/paddle_hit.wav', 'static'),
+        ['score'] = love.audio.newSource('resources/sounds/score.wav', 'static'),
+        ['wall_hit'] = love.audio.newSource('resources/sounds/wall_hit.wav', 'static')
     }
 
     -- initialize our virtual resolution, which will be rendered within our
