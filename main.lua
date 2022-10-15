@@ -19,30 +19,30 @@
 -- a more retro aesthetic
 --
 -- https://github.com/Ulydev/push
-push = require 'push'
+push = require 'lib/push'
 
 -- the "Class" library we're using will allow us to represent anything in
 -- our game as code, rather than keeping track of many disparate variables and
 -- methods
 --
 -- https://github.com/vrld/hump/blob/master/class.lua
-Class = require 'class'
+Class = require 'lib/class'
 
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file
-require 'StateMachine'
+require 'src/StateMachine'
 
 -- all states our StateMachine can transition between
-require 'states/BaseState'
-require 'states/CountdownState'
-require 'states/PlayState'
-require 'states/PauseState'
-require 'states/ScoreState'
-require 'states/TitleScreenState'
+require 'src/states/BaseState'
+require 'src/states/CountdownState'
+require 'src/states/PlayState'
+require 'src/states/PauseState'
+require 'src/states/ScoreState'
+require 'src/states/TitleScreenState'
 
-require 'Bird'
-require 'Pipe'
-require 'PipePair'
+require 'src/Bird'
+require 'src/Pipe'
+require 'src/PipePair'
 
 -- physical screen dimensions
 WINDOW_WIDTH = 1280
