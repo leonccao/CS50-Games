@@ -10,7 +10,7 @@ Source: [CS50’s Introduction to Game Development](https://cs50.harvard.edu/gam
 
 ### Video demo
 
-[![Project 0 - Pong](https://github.com/leonccao/CS50-Games/blob/games50/projects/2018/x/pong/screenshots/project0-pong.jpg?raw=true)](https://youtu.be/Gw4YxQObCEo)
+[![Project 0 - Pong](https://github.com/leonccao/CS50-Games/blob/games50/projects/2018/x/pong/resources/screenshots/project0-pong.jpg?raw=true)](https://youtu.be/Gw4YxQObCEo)
 
 ## Project 1 - Flappy Bird
 
